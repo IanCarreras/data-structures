@@ -17,7 +17,7 @@ class Node:
         self.next_node = next_node
 
 class LinkedList:
-    def __init__(self)
+    def __init__(self):
         self.head = None
         self.tail = None
 
@@ -68,13 +68,28 @@ class LinkedList:
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
 
     def __len__(self):
-        pass
+        self.size = len(self.storage)
+        return self.size
 
     def push(self, value):
-        pass
+        self.storage.append(value)
+        return self.storage
 
     def pop(self):
-        pass
+        self.storage.pop(self.size-1)
+        return self.storage
+
+    def __str__(self):
+        return f'{self.storage}'
+
+stack = Stack()
+
+for i in range(10):
+    stack.push(i)
+print(stack)
+
+stack.pop()
+print(stack)
