@@ -79,17 +79,43 @@ class Stack:
         return self.storage
 
     def pop(self):
-        self.storage.pop(self.size-1)
-        return self.storage
+        if len(self.storage) == 0:
+            return None
+        else:
+            return self.storage.pop(self.size-1)
 
     def __str__(self):
         return f'{self.storage}'
 
-stack = Stack()
+# array_stack = ArrayStack()
 
-for i in range(10):
-    stack.push(i)
-print(stack)
+# for i in range(10):
+#     array_stack.push(i)
+# print(array_stack)
 
-stack.pop()
-print(stack)
+# array_stack.pop()
+# print(array_stack) 
+
+# class LinkedListStack:
+#     def __init__(self, linked_list):
+#         self.size = 0
+#         self.storage = linked_list
+
+#     def __len__(self):
+#         self.size = len(self.storage)
+#         return self.size
+
+#     def push(self, value):
+#         self.storage.append(value)
+#         return self.storage
+
+#     def pop(self):
+#         self.storage.pop(self.size-1)
+#         return self.storage
+
+#     def __str__(self):
+#         return f'{self.storage}' 
+
+
+# linked_list = LinkedList()
+# linked_list_stack = LinkedListStack(linked_list)
