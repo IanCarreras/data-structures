@@ -12,94 +12,70 @@ return elements in Last In First Out order.
 """
 
 class Node:
-    def __init__(self, value=None, next_node=None):
-        self.value = value
-        self.next_node = next_node
+  def __init__(self, value = None, next_node = None):
+    self.value = value
+    self.next_node = next_node
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
+  def __init__(self):
+    self.head = None 
+    self.tail = None 
+  
+  def add_to_head(self, value):
+    new_node = Node(value)
+    if self.head is None and self.tail is None:
+      self.head = new_node
+      self.tail = new_node
+    else:
+      new_node.next_node = self.head
+      self.head = new_node
 
-    def add_to_head(self, value):
-        new_node = Node(value)
-        if self.head is None and self.tail is None:
-            self.head = new_node
-            self.tail = new_node
-        else:
-            new_node.next_node = self.head
-            self.head = new_node
+  def add_to_tail(self, value):
+    new_node = Node(value)
+    if self.head is None and self.tail is None:
+      self.head = new_node
+      self.tail = new_node
+    else:
+      self.tail.next_node = new_node
+      self.tail = new_node
 
-    def add_to_tail(self, value):
-        new_node = Node(value)
-        if self.head is None and self.tail is None:
-            self.head = new_node
-            self.tail = new_node
-        else: 
-            self.tail.next_node = new_node
-            self.tail = new_node
+  def remove_head(self):
+    if not self.head:
+      return None
+    if self.head.next_node is None:
+      head_value = self.head.value
+      self.head = None
+      self.tail = None
+      return head_value
+    head_value = self.head.value
+    self.head = self.head.next_node
+    return head_value     
 
-    def remove_head(self):
-        if not self.head:
-            return None
-        if self.head.new_node is None:
-            head_value = self.head.value
-            self.head = None
-            self.tail = None
-            return head_value
-        head_value = self.head.value
-        self.head = self.head.next_node
-        return head_value
+  def contains(self, value):
+    if self.head is None:
+      return False
+    
+    current_node = self.head
 
-    def contains(self, value):
-        if self.head is None:
-            return False
+    while current_node is not None:
+      if current_node.value == value:
+        return True
 
-        current_node = self.head
+      current_node = current_node.next_node
+    return False 
 
-        while current_node is not None:
-            if current_node.value is value:
-                return True
-            current_node = current_node.next_node
-        return False
+  def print_list(self):
+    current = self.head
+    while current:
+      print(f'{current.value} ->')
+      current = current.next_node
 
 
-
-class Stack:
-    def __init__(self):
-        self.size = 0
-        self.storage = []
-
-    def __len__(self):
-        self.size = len(self.storage)
-        return self.size
-
-    def push(self, value):
-        self.storage.append(value)
-        return self.storage
-
-    def pop(self):
-        if len(self.storage) == 0:
-            return None
-        else:
-            return self.storage.pop(self.size-1)
-
-    def __str__(self):
-        return f'{self.storage}'
-
-# array_stack = ArrayStack()
-
-# for i in range(10):
-#     array_stack.push(i)
-# print(array_stack)
-
-# array_stack.pop()
-# print(array_stack) 
-
-# class LinkedListStack:
-#     def __init__(self, linked_list):
+# Array stack
+# class Stack:
+#     def __init__(self):
 #         self.size = 0
-#         self.storage = linked_list
+#         self.storage = []
 
 #     def __len__(self):
 #         self.size = len(self.storage)
@@ -110,12 +86,38 @@ class Stack:
 #         return self.storage
 
 #     def pop(self):
-#         self.storage.pop(self.size-1)
-#         return self.storage
+#         if len(self.storage) == 0:
+#             return None
+#         else:
+#             return self.storage.pop(self.size-1)
 
 #     def __str__(self):
-#         return f'{self.storage}' 
+#         return f'{self.storage}'
+
+# Linked list stack
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = LinkedList()
+
+    def __len__(self):
+        return self.size
+
+    def push(self, value):
+        self.size += 1
+        self.storage.add_to_head(value)
+
+    def pop(self):
+        if self.size == 0:
+            return None
+        node = self.storage.remove_head()
+        self.size -= 1
+        return node
 
 
 # linked_list = LinkedList()
-# linked_list_stack = LinkedListStack(linked_list)
+# linked_list_stack = Stack(linked_list)
+
+# linked_list.add_to_tail(1)
+# linked_list.add_to_tail(3)
+# linked_list.print_list()
