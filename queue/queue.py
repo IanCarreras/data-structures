@@ -73,7 +73,7 @@ class LinkedList:
       print(f'{current.value} ->')
       current = current.next_node
 
-linked list
+# linked list
 class Queue:
     def __init__(self):
         self.size = 0
