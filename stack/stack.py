@@ -65,11 +65,12 @@ class LinkedList:
     return False 
 
   def print_list(self):
-      output = ''
+    output = ''
     current = self.head
     while current:
-      output += f'{current.value} ->'
+      output += f' {current.value} ->'
       current = current.next_node
+    print(output)
 
 
 # Array stack
@@ -97,28 +98,27 @@ class LinkedList:
 
 # Linked list stack
 class Stack:
-    def __init__(self):
-        self.size = 0
-        self.storage = LinkedList()
+  def __init__(self):
+    self.size = 0
+    self.storage = LinkedList()
 
-    def __len__(self):
-        return self.size
+  def __len__(self):
+    return self.size
 
-    def push(self, value):
-        self.size += 1
-        self.storage.add_to_head(value)
+  def push(self, value):
+    self.size += 1
+    self.storage.add_to_head(value)
 
-    def pop(self):
-        if self.size == 0:
-            return None
-        node = self.storage.remove_head()
-        self.size -= 1
-        return node
+  def pop(self):
+    if self.size == 0:
+      return None
+    node = self.storage.remove_head()
+    self.size -= 1
+    return node
 
 
-# linked_list = LinkedList()
-# linked_list_stack = Stack(linked_list)
+linked_list = LinkedList()
 
-# linked_list.add_to_tail(1)
-# linked_list.add_to_tail(3)
-# linked_list.print_list()
+linked_list.add_to_tail(1)
+linked_list.add_to_tail(3)
+linked_list.print_list()

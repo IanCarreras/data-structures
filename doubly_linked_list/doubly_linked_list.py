@@ -48,7 +48,17 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        elif self.length == 1:
+            new_node.next = self.head
+            self.head = new_node
+            self.tail = new_node.next
+            self.tail.prev = self.head
+        self.length += 1
+        return self.head
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -86,3 +96,22 @@ class DoublyLinkedList:
     """Returns the highest value currently in the list"""
     def get_max(self):
         pass
+
+    def print_list(self):
+        output = ''
+        current = self.head
+        while current.next:
+            output += f'<- {current.value} ->'
+            print(current.value)
+            current = current.next
+            print(current.value)
+        print(output)
+        return output
+
+x = DoublyLinkedList()
+x.add_to_head(3)
+x.add_to_head(6)
+x.print_list()
+
+# print(x.head.value)
+# print(x.head.next.value)

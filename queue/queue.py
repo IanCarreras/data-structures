@@ -68,11 +68,12 @@ class LinkedList:
     return False 
 
   def print_list(self):
-      output = ''
+    output = ''
     current = self.head
     while current:
-      output += f'{current.value} ->'
+      output += f' {current.value} ->'
       current = current.next_node
+    print(output)
 
 # linked list
 class Queue:
