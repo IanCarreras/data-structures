@@ -130,6 +130,8 @@ class DoublyLinkedList:
     def move_to_front(self, node):
         current = self.head
         while current:
+            if node == self.head.value:
+                break
             if current.value == node:
                 if current.prev:
                     current.prev.next = current.next
@@ -200,5 +202,5 @@ x.add_to_head(6)
 x.print_list()
 
 print('move to end')
-x.move_to_end(3)
+x.move_to_front(3)
 x.print_list()
