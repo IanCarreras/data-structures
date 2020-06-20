@@ -57,6 +57,10 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node.next
             self.tail.prev = self.head
+        elif self.length > 1:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
         self.length += 1
         return self.head
 
@@ -100,18 +104,16 @@ class DoublyLinkedList:
     def print_list(self):
         output = ''
         current = self.head
-        while current.next:
+        while current:
             output += f'<- {current.value} ->'
-            print(current.value)
             current = current.next
-            print(current.value)
         print(output)
-        return output
 
 x = DoublyLinkedList()
 x.add_to_head(3)
 x.add_to_head(6)
+x.add_to_head(7)
+
 x.print_list()
 
-# print(x.head.value)
-# print(x.head.next.value)
+
