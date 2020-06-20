@@ -68,9 +68,10 @@ class LinkedList:
     return False 
 
   def print_list(self):
+      output = ''
     current = self.head
     while current:
-      print(f'{current.value} ->')
+      output += f'{current.value} ->'
       current = current.next_node
 
 # linked list
